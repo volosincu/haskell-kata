@@ -1,1 +1,1 @@
-# haskell-kata
+# haskellkata
