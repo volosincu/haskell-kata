@@ -1,7 +1,6 @@
 {-# LANGUAGE QuasiQuotes #-}
 
 module ParseDom (documentToStack, isValidStack, maxDepth) where
-
 import qualified Data.List as L
 
 
@@ -38,6 +37,16 @@ isValidStack (tag:tags) (stackTag:stack)
 
 -- |The 'maxDepth' iterate tags from stack and compute the max depth 
 maxDepth :: [String] -> Int -> Int -> Int
-maxDepth [] current max = max
-maxDepth tags current max = 0
-maxDepth tags current max = 0 
+maxDepth [] current max = 0
+maxDepth (x:y:[]) current max = max
+maxDepth (x:y:tags) current max
+    | isClosing = maxDepth ytags (current - 1) max
+    | not isXClosing && not isYClosing = maxDepth ytags (current + 1) (calcMax max)
+    | otherwise = maxDepth ytags current max
+    where
+        ytags = y:tags
+        nMax = (current + 1)
+        calcMax m = if nMax > m then nMax else m 
+        isClosing = isXClosing && isYClosing
+        isXClosing = head x == '/'
+        isYClosing = head y == '/'

@@ -73,5 +73,7 @@ maxDepthSpec = describe "Validate max depth of dom tags transformed in a stack" 
         (maxDepth ["div", "div", "/div", "/div"] 0 0) `shouldBe` 1
     it "deepth of 2" $ do
         (maxDepth ["div", "div", "div", "/div", "/div", "/div"] 0 0) `shouldBe` 2
-    it "deepth of 2" $ do
+    it "deepth of 4" $ do
+        (maxDepth ["div", "div", "div", "p", "p", "/p", "/p", "/div", "/div", "/div"] 0 0) `shouldBe` 4
+    it "deepth of 2 from 2 sibling trees" $ do
         (maxDepth ["div", "div", "div", "/div", "/div", "/div", "ul", "li", "ul", "/ul", "/li", "li", "/li", "/ul"] 0 0) `shouldBe` 2
