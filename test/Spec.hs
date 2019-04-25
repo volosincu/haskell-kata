@@ -10,6 +10,7 @@ import ParseDomSpec
 
 main :: IO ()
 main = hspec $ do
+  ParseDomSpec.maxDepthSpec
   ParseDomSpec.documentToStackSpec'EdgeCases
   ParseDomSpec.documentToStackSpec'PositiveCases
   ParseDomSpec.isValidStackSpec'ValidCase

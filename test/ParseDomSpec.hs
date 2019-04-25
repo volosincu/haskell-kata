@@ -1,15 +1,16 @@
 
 
 module ParseDomSpec (
-    documentToStackSpec'PositiveCases
+    maxDepthSpec
+    , documentToStackSpec'PositiveCases
     , documentToStackSpec'EdgeCases
     , isValidStackSpec'ValidCase
-    , isValidStackSpec'NotValidCase) where
+    , isValidStackSpec'NotValidCase ) where
 
 import Test.Hspec (Spec, describe, it, shouldBe, shouldSatisfy)
 import Test.HUnit
 
-import ParseDom (documentToStack, isValidStack)
+import ParseDom (documentToStack, isValidStack, maxDepth)
 
 documentToStackSpec'PositiveCases :: Spec
 documentToStackSpec'PositiveCases = describe "read dom and extract tags in stack structure" $ do
@@ -46,15 +47,31 @@ documentToStackSpec'EdgeCases = describe "read inconsisted dom and extract valid
 isValidStackSpec'ValidCase :: Spec
 isValidStackSpec'ValidCase = describe "Validate correct stack structure" $ do
     it "validate stacks - matching tags" $ do
-        (isValidStack ["div", "/div"]) `shouldBe` True
-        (isValidStack ["div", "span", "/span","/div"]) `shouldBe` True
-        (isValidStack ["div", "span", "/span","/div", "ul", "li", "/li", "/ul"]) `shouldBe` True
-        (isValidStack ["div", "span", "/span", "span", "/span", "/div"]) `shouldBe` True
+        (isValidStack ["div", "/div"] []) `shouldBe` True
+        (isValidStack ["div", "span", "/span","/div"] []) `shouldBe` True
+        (isValidStack ["div", "span", "/span","/div", "ul", "li", "/li", "/ul"] []) `shouldBe` True
+        (isValidStack ["div", "span", "/span", "span", "/span", "/div"] []) `shouldBe` True
+        (isValidStack ["div", "span", "/span", "span", "/span", "/div"] []) `shouldBe` True
+        (isValidStack ["ul", "li", "/li", "/ul", "div", "/div", "p", "span" ,"/span" ,"/p"] []) `shouldBe` True
+        (isValidStack ["ul", "li", "/li", "/ul", "div", "/div", "p", "span", "span", "/span" ,"/span" ,"/p"] []) `shouldBe` True
 
 isValidStackSpec'NotValidCase :: Spec
 isValidStackSpec'NotValidCase = describe "Validate incorrect stack structure" $ do
     it "validate stacks - unmatching tags" $ do
-        (isValidStack ["span", "/div"]) `shouldBe` False
-        (isValidStack ["span", "/span","/div"]) `shouldBe` False
-        (isValidStack ["div", "span", "/span","/div", "ul", "/li", "/ul"]) `shouldBe` False
-        (isValidStack ["div", "span", "/span", "spn", "/span", "/iv"]) `shouldBe` False
+        (isValidStack ["span", "/div"] []) `shouldBe` False
+        (isValidStack ["span", "/span","/div"] []) `shouldBe` False
+        (isValidStack ["div", "span", "/span","/div", "ul", "/li", "/ul"] []) `shouldBe` False
+        (isValidStack ["div", "span", "/span", "spn", "/span", "/iv"] []) `shouldBe` False
+        (isValidStack ["ul", "li", "/li", "/ul", "div", "/div", "p", "span", "span" ,"/span" ,"/p"] []) `shouldBe` False
+        (isValidStack ["ul", "li", "/li", "/ul", "div", "/div", "i", "span", "span", "/span" ,"/span" ,"/p"] []) `shouldBe` False
+
+maxDepthSpec :: Spec
+maxDepthSpec = describe "Validate max depth of dom tags transformed in a stack" $ do
+    it "deepth of 0" $ do
+        (maxDepth ["div", "/div"] 0 0) `shouldBe` 0
+    it "deepth of 1" $ do
+        (maxDepth ["div", "div", "/div", "/div"] 0 0) `shouldBe` 1
+    it "deepth of 2" $ do
+        (maxDepth ["div", "div", "div", "/div", "/div", "/div"] 0 0) `shouldBe` 2
+    it "deepth of 2" $ do
+        (maxDepth ["div", "div", "div", "/div", "/div", "/div", "ul", "li", "ul", "/ul", "/li", "li", "/li", "/ul"] 0 0) `shouldBe` 2

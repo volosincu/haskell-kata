@@ -1,6 +1,6 @@
 {-# LANGUAGE QuasiQuotes #-}
 
-module ParseDom (documentToStack, isValidStack) where
+module ParseDom (documentToStack, isValidStack, maxDepth) where
 
 import qualified Data.List as L
 
@@ -20,7 +20,24 @@ documentToStack (x:xs) stack =
         matchTagStart = (/= '<')
         matchTagEnd = (/= '>')
 
-
 -- |The 'isValidStack' function reads the stack while the tags match. If all match the function returns 'True'
-isValidStack :: [String] -> Bool
-isValidStack stack = False
+isValidStack :: [String] -> [String] -> Bool
+isValidStack [] [] = True
+isValidStack [] stack = False
+isValidStack (tag:tags) []
+    | isClosing = False
+    | otherwise = isValidStack tags [tag]
+    where isClosing = head tag == '/'
+isValidStack (tag:tags) (stackTag:stack)
+    | isClosing && isMatching = isValidStack tags stack
+    | isClosing && not isMatching = isValidStack [] (tag:stack)
+    | otherwise = isValidStack tags (tag:stackTag:stack)
+    where
+        isClosing = head tag == '/'
+        isMatching = tail tag == stackTag
+
+-- |The 'maxDepth' iterate tags from stack and compute the max depth 
+maxDepth :: [String] -> Int -> Int -> Int
+maxDepth [] current max = max
+maxDepth tags current max = 0
+maxDepth tags current max = 0 
