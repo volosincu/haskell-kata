@@ -1,5 +1,5 @@
 
-module MergePoint ( LinkedList(..), createNode, push, last', reverse', init', head' ) where
+module MergePoint ( LinkedList(..), createNode, push, last', reverse', init', head', mergePoint ) where
 
 data LinkedList a = Empty | Node a (LinkedList a) deriving (Show, Eq, Ord)
 
@@ -27,3 +27,6 @@ init' list = let (Node v rest) = reverse' list Empty in reverse' rest Empty
 head' :: LinkedList a -> LinkedList a
 head' Empty = Empty
 head' (Node value _) = (Node value Empty)
+
+mergePoint :: LinkedList a -> LinkedList a -> LinkedList a
+mergePoint list1 list2 = Empty

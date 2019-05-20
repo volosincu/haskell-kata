@@ -19,3 +19,4 @@ main = hspec $ do
   ParseDomSpec.isValidStackSpec'NotValidCase
   MergePointSpec.nodeSpec
   MergePointSpec.listSpec
+  MergePointSpec.mergePointSpec
