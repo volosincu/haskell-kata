@@ -28,5 +28,18 @@ head' :: LinkedList a -> LinkedList a
 head' Empty = Empty
 head' (Node value _) = (Node value Empty)
 
-mergePoint :: LinkedList a -> LinkedList a -> LinkedList a
-mergePoint list1 list2 = Empty
+compareItemsMergePoint :: (Ord a, Eq a, Show a) => LinkedList a -> LinkedList a -> LinkedList a -> LinkedList a
+compareItemsMergePoint Empty l2 acc = acc
+compareItemsMergePoint l1 Empty acc = acc
+compareItemsMergePoint (Node v1 l1) (Node v2 l2) acc =
+    if v1 == v2
+        then compareItemsMergePoint l1 l2 (Node v1 Empty)
+        else acc
+
+mergePoint :: (Ord a, Eq a, Show a) =>  LinkedList a -> LinkedList a -> LinkedList a
+mergePoint list1 list2 =
+    let
+        l1 = reverse' list1 Empty
+        l2 = reverse' list2 Empty
+        in
+            (compareItemsMergePoint l1 l2 Empty)

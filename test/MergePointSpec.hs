@@ -22,7 +22,7 @@ nodeSpec = describe "Spec node structure" $ do
 
             (Node d _) = node
             in
-	        d `shouldBe` value
+                d `shouldBe` value
 
     it "create single node" $ do
         let value :: Char
@@ -239,7 +239,7 @@ mergePointSpec = describe "Spec merge point between 2 lists - There are only 3 p
 		    actual `shouldBe` expected
 
     describe "Scenario 3" $ do
-    	it "search merge point in unequal lists" $ do
+    	it "search merge point in unequal lists (first shorter)" $ do
 	    let list :: LinkedList Char
 		list = getList ['a', 'b', 'c', 'd']
 
@@ -254,7 +254,7 @@ mergePointSpec = describe "Spec merge point between 2 lists - There are only 3 p
 		in
 		    actual `shouldBe` expected
 
-    	it "search merge point in unequal lists" $ do
+    	it "search merge point in unequal lists (diff equal list)" $ do
 	    let list :: LinkedList Char
 		list = getList ['x', 'y', 'z', 'c', 'd']
 
@@ -269,7 +269,7 @@ mergePointSpec = describe "Spec merge point between 2 lists - There are only 3 p
 		in
 		    actual `shouldBe` expected
 
-    	it "search merge point in unequal lists" $ do
+    	it "search merge point in unequal lists (second shorter)" $ do
 	    let list :: LinkedList Char
 		list = getList ['a', 'b', 'x', 'y', 'z']
 
@@ -277,14 +277,14 @@ mergePointSpec = describe "Spec merge point between 2 lists - There are only 3 p
 		list1 = getList ['x', 'y', 'z']
 
 		expected :: LinkedList Char
-		expected = Empty
+		expected = (Node 'x' Empty)
 
 		actual :: LinkedList Char
 		actual = mergePoint list list1
-		in
-		    actual `shouldBe` expected
+                in
+                    actual `shouldBe` expected
 
-    	it "search merge point in unequal lists" $ do
+    	it "search merge point in unequal lists (equals)" $ do
 	    let list :: LinkedList Char
 		list = getList ['x', 'y', 'z']
 
@@ -292,9 +292,10 @@ mergePointSpec = describe "Spec merge point between 2 lists - There are only 3 p
 		list1 = getList ['x', 'y', 'z']
 
 		expected :: LinkedList Char
-		expected = Empty
+		expected = (Node 'x' Empty)
 
 		actual :: LinkedList Char
 		actual = mergePoint list list1
 		in
-		    actual `shouldBe` expected
+                    actual `shouldBe` expected
+
