@@ -2,9 +2,11 @@
 import Book
 import Equals
 import MergePoint
+import Locker
 import Test.Hspec (hspec, describe, it)
 import Test.QuickCheck
 
+import LockerSpec
 import EqualsSpec
 import BookSpec
 import ParseDomSpec
@@ -20,3 +22,4 @@ main = hspec $ do
   MergePointSpec.nodeSpec
   MergePointSpec.listSpec
   MergePointSpec.mergePointSpec
+  LockerSpec.lockerCrudOperationsSpec

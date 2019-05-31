@@ -32,12 +32,14 @@ library
       Book
       ParseDom
       MergePoint
+      Locker
   other-modules:
       Paths_haskellkata
   hs-source-dirs:
       src
   build-depends:
       base >=4.7 && <5
+      , containers
       , hspec
       , QuickCheck
   default-language: Haskell2010
@@ -50,11 +52,13 @@ test-suite haskellkata-test
       BookSpec
       ParseDomSpec
       MergePointSpec
+      LockerSpec
   hs-source-dirs:
       test
   ghc-options: -threaded -rtsopts -with-rtsopts=-N
   build-depends:
       base >=4.7 && <5
+      , containers
       , haskellkata
       , hspec
       , HUnit
