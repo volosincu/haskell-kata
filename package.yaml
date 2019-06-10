@@ -21,6 +21,14 @@ description:         Please see the README on GitHub at <https://github.com/gith
 
 dependencies:
 - base >= 4.7 && < 5
+- containers
+- template-haskell
+- hspec
+- QuickCheck
+- HDBC-postgresql
+- HUnit
+- HDBC
+
 
 library:
   source-dirs: src
@@ -28,13 +36,13 @@ library:
 executables:
   haskellkata-exe:
     main:                Main.hs
-    source-dirs:         app
+    source-dirs:         src
     ghc-options:
     - -threaded
     - -rtsopts
     - -with-rtsopts=-N
     dependencies:
-    - haskellkata
+      - haskellkata
 
 tests:
   haskellkata-test:
@@ -45,4 +53,4 @@ tests:
     - -rtsopts
     - -with-rtsopts=-N
     dependencies:
-    - haskellkata
+      - haskellkata

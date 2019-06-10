@@ -1,3 +1,5 @@
+module Kata.Functor () where
+
 import qualified Data.Map.Strict as Map
 import Data.Map.Strict (Map(..))
 import Data.Maybe (Maybe)
@@ -43,7 +45,7 @@ getCountryCodeMaybe Nothing = (Just 0)
 -- liftedGetCC = liftA getCountryCode
 -- liftedGetCC (Just "ro")
 
-main = do
+runExample = do
   args <- getArgs
   print $ unwords $ ["seach country code for country: "] ++ args
   let code = getCountryCode $ unwords args in print code

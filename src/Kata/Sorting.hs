@@ -1,4 +1,5 @@
 
+module Kata.Sorting () where
 
 quicksort :: (Ord a) => [a] -> [a]
 quicksort [] = []
