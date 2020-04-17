@@ -6,6 +6,7 @@ import Locker
 import Test.Hspec (hspec, describe, it)
 import Test.QuickCheck
 
+import HackerRank.ChaosQueueSpec
 import LockerSpec
 import EqualsSpec
 import BookSpec
@@ -22,4 +23,5 @@ main = hspec $ do
   MergePointSpec.nodeSpec
   MergePointSpec.listSpec
   MergePointSpec.mergePointSpec
-  LockerSpec.lockerCrudOperationsSpec
+  HackerRank.ChaosQueueSpec.minimumBribes'
+  ---LockerSpec.lockerCrudOperationsSpec

@@ -4,7 +4,7 @@ cabal-version: 1.12
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: a44861952c9f3964d67788edf591a12659bbf24df55ff606a4906551f0619545
+-- hash: a85df9fe6646cdd6ea7ac1dcfcff46474401bda23d2607b35c833e4e584d257b
 
 name:           haskellkata
 version:        0.1.0.0
@@ -29,6 +29,7 @@ library
   exposed-modules:
       Book
       Equals
+      HackerRank.ChaosQueue
       Kata.DataTypes
       Kata.Functor
       Kata.Molecule
@@ -44,9 +45,7 @@ library
   hs-source-dirs:
       src
   build-depends:
-      HDBC
-    , HDBC-postgresql
-    , HUnit
+      HUnit
     , QuickCheck
     , base >=4.7 && <5
     , containers
@@ -59,6 +58,7 @@ executable haskellkata-exe
   other-modules:
       Book
       Equals
+      HackerRank.ChaosQueue
       Kata.DataTypes
       Kata.Functor
       Kata.Molecule
@@ -73,9 +73,7 @@ executable haskellkata-exe
       src
   ghc-options: -threaded -rtsopts -with-rtsopts=-N
   build-depends:
-      HDBC
-    , HDBC-postgresql
-    , HUnit
+      HUnit
     , QuickCheck
     , base >=4.7 && <5
     , containers
@@ -94,13 +92,12 @@ test-suite haskellkata-test
       MergePointSpec
       ParseDomSpec
       Paths_haskellkata
+      HackerRank.ChaosQueueSpec
   hs-source-dirs:
       test
   ghc-options: -threaded -rtsopts -with-rtsopts=-N
   build-depends:
-      HDBC
-    , HDBC-postgresql
-    , HUnit
+      HUnit
     , QuickCheck
     , base >=4.7 && <5
     , containers

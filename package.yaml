@@ -25,9 +25,7 @@ dependencies:
 - template-haskell
 - hspec
 - QuickCheck
-- HDBC-postgresql
 - HUnit
-- HDBC
 
 
 library:
