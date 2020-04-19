@@ -12,6 +12,7 @@ import EqualsSpec
 import BookSpec
 import ParseDomSpec
 import MergePointSpec
+import SwapInListTutorialSpec
 
 main :: IO ()
 main = hspec $ do
@@ -24,4 +25,7 @@ main = hspec $ do
   MergePointSpec.listSpec
   MergePointSpec.mergePointSpec
   HackerRank.ChaosQueueSpec.minimumBribes'
+  SwapInListTutorialSpec.swapByValue
+  SwapInListTutorialSpec.swapByIndexOnChar
+  SwapInListTutorialSpec.swapByIndexOnNum
   ---LockerSpec.lockerCrudOperationsSpec
