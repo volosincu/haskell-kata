@@ -1,5 +1,5 @@
 
-module SwapInListTutorialSpec ( swapByValue', swapByIndex' ) where
+module SwapInListTutorialSpec ( swapByValue', swapByIndexOnChar', swapByIndexOnNum' ) where
 
 import SwapInListTutorial ( swapByValue, swapByIndexOnChar, swapByIndexOnNum )
 import Test.Hspec (Spec, describe, it, shouldBe, shouldSatisfy)
@@ -45,7 +45,7 @@ swapByIndexOnNum' = describe "Test schimbare valori dupa index (Num)" $ do
     it "Should swap indeces 1 0" $ do
         shouldBe resultA10 [2,1,5,6,8,3,4]
     it "Should swap indeces 4 2" $ do
-        shouldBe resultA10 [2,1,8,6,5,3,4]
+        shouldBe resultB42 [1,2,8,6,5,3,4]
     where
         resultA10 = swapByIndexOnNum 1 0 [1,2,5,6,8,3,4]
         resultB42 = swapByIndexOnNum 4 2 [1,2,5,6,8,3,4]
