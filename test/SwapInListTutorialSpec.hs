@@ -48,4 +48,4 @@ swapByIndexOnNum' = describe "Test schimbare valori dupa index (Num)" $ do
         shouldBe resultA10 [2,1,8,6,5,3,4]
     where
         resultA10 = swapByIndexOnNum 1 0 [1,2,5,6,8,3,4]
-        resultB42 = swapByIndexOnChar 4 2 [1,2,5,6,8,3,4]
+        resultB42 = swapByIndexOnNum 4 2 [1,2,5,6,8,3,4]
