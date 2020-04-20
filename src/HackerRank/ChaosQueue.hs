@@ -25,17 +25,17 @@ swapAndUpdateValues maxIndex (k, v) pairIndex (k1, v1) c
 calcStep :: (Ord k, Show k, Num a) => k -> k -> Map k a -> Map k a
 calcStep max pair state =
     if (max < pair)
-        then trace ("update pair " ++ show max ++ "<" ++ show pair) Map.insertWith (+) pair 1 state
-        else trace ("update max " ++ show max ++ ">=" ++ show pair) Map.insertWith (+) max 1 state
+        then Map.insertWith (+) pair 1 state
+        else Map.insertWith (+) max 1 state
 
 reverseSteps :: (Show a, Show t, Num t, Num a, Ord a)
     => [(Int, Int)] -> Map Int a -> t -> Maybe t
 reverseSteps kvs itemStepsMap step =
     if 0 == v
-        then trace ("Nu mai sunt maxime " ++ show maxStepsPerElem) Just step
+        then Just step
         else if maxStepsPerElem >=3
-                then trace ("s-a atins nr maxim de spagi " ++ show sw) Nothing
-                else trace ("rec reverseSteps " ++ show maxStepsPerElem ++ " " ++ show step ++ "  " ++ show allMaxims ++ "  " ++ show sw  ) reverseSteps sw newItemStepsMap (step+1)
+                then Nothing
+                else reverseSteps sw newItemStepsMap (step+1)
     where
         randomMax = getMax kvs
         (kz, vz) = randomMax
@@ -75,7 +75,7 @@ validateMax kvs (max:ms) =
     if v == 0 
         then max
         else if k < k1 && v == v1
-            then trace("    _____     validate " ++ show k ++ "  " ++ show k1 ) validateMax kvs ms
+            then validateMax kvs ms
             else max
     where
         (k, v) = max
@@ -87,9 +87,9 @@ validateMax kvs (max:ms) =
 minimumBribes :: Monad m => [Int] -> m String
 minimumBribes q =
     case steps of
-        (Just counter) -> trace ("result " ++ show counter) return (show counter)
-        Nothing -> trace ("result Too chaotic") return "Too chaotic"
+        (Just counter) -> return (show counter)
+        Nothing -> return "Too chaotic"
     where
-        steps = trace ("rec reverseSteps init" ++ show 0 ++ " " ++ show map ) reverseSteps map Map.empty 0
+        steps = reverseSteps map Map.empty 0
         ps = diffLoc (:) 1 q
         map = List.zip q ps

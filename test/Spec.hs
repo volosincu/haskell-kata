@@ -25,6 +25,7 @@ main = hspec $ do
   MergePointSpec.listSpec
   MergePointSpec.mergePointSpec
   HackerRank.ChaosQueueSpec.minimumBribes'
+  HackerRank.ChaosQueueSpec.minimumBribes''
   SwapInListTutorialSpec.swapByValue'
   SwapInListTutorialSpec.swapByIndexOnChar'
   SwapInListTutorialSpec.swapByIndexOnNum'
