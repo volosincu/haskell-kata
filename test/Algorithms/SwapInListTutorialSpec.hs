@@ -1,7 +1,7 @@
 
-module SwapInListTutorialSpec ( swapByValue', swapByIndexOnChar', swapByIndexOnNum' ) where
+module Algorithms.SwapInListTutorialSpec ( swapByValue', swapByIndexOnChar', swapByIndexOnNum' ) where
 
-import SwapInListTutorial ( swapByValue, swapByIndexOnChar, swapByIndexOnNum )
+import Algorithms.SwapInListTutorial ( swapByValue, swapByIndexOnChar, swapByIndexOnNum )
 import Test.Hspec (Spec, describe, it, shouldBe, shouldSatisfy)
 import Test.HUnit
 

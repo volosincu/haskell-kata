@@ -40,7 +40,8 @@ library
       Main
       MergePoint
       ParseDom
-      SwapInListTutorial
+      Algorithms.SwapInListTutorial
+      Algorithms.SortingTutorial
   other-modules:
       Paths_haskellkata
   hs-source-dirs:
@@ -69,7 +70,8 @@ executable haskellkata-exe
       Locker
       MergePoint
       ParseDom
-      SwapInListTutorial
+      Algorithms.SwapInListTutorial
+      Algorithms.SortingTutorial
       Paths_haskellkata
   hs-source-dirs:
       src
@@ -95,7 +97,8 @@ test-suite haskellkata-test
       ParseDomSpec
       Paths_haskellkata
       HackerRank.ChaosQueueSpec
-      SwapInListTutorialSpec
+      Algorithms.SwapInListTutorialSpec
+      Algorithms.SortingTutorialSpec
   hs-source-dirs:
       test
   ghc-options: -threaded -rtsopts -with-rtsopts=-N

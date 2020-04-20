@@ -6,27 +6,40 @@ import Locker
 import Test.Hspec (hspec, describe, it)
 import Test.QuickCheck
 
-import HackerRank.ChaosQueueSpec
+import HackerRank.ChaosQueueSpec (minimumBribes', minimumBribes'')
 import LockerSpec
 import EqualsSpec
 import BookSpec
-import ParseDomSpec
-import MergePointSpec
-import SwapInListTutorialSpec
+import ParseDomSpec (
+    maxDepthSpec,
+    documentToStackSpec'EdgeCases,
+    documentToStackSpec'PositiveCases,
+    isValidStackSpec'ValidCase,
+    isValidStackSpec'NotValidCase
+    )
+import MergePointSpec (nodeSpec, listSpec, mergePointSpec)
+import Algorithms.SwapInListTutorialSpec (swapByValue', swapByIndexOnChar', swapByIndexOnNum')
+import Algorithms.SortingTutorialSpec (quicksort')
 
 main :: IO ()
 main = hspec $ do
-  ParseDomSpec.maxDepthSpec
-  ParseDomSpec.documentToStackSpec'EdgeCases
-  ParseDomSpec.documentToStackSpec'PositiveCases
-  ParseDomSpec.isValidStackSpec'ValidCase
-  ParseDomSpec.isValidStackSpec'NotValidCase
-  MergePointSpec.nodeSpec
-  MergePointSpec.listSpec
-  MergePointSpec.mergePointSpec
-  HackerRank.ChaosQueueSpec.minimumBribes'
-  HackerRank.ChaosQueueSpec.minimumBribes''
-  SwapInListTutorialSpec.swapByValue'
-  SwapInListTutorialSpec.swapByIndexOnChar'
-  SwapInListTutorialSpec.swapByIndexOnNum'
+-- ParseDomSpec
+  maxDepthSpec
+  documentToStackSpec'EdgeCases
+  documentToStackSpec'PositiveCases
+  isValidStackSpec'ValidCase
+  isValidStackSpec'NotValidCase
+-- MergePointSpec
+  nodeSpec
+  listSpec
+  mergePointSpec
+-- HackerRank.ChaosQueueSpec
+  minimumBribes'
+  minimumBribes''
+-- Algorithms.SwapInListTutorialSpec
+  swapByValue'
+  swapByIndexOnChar'
+  swapByIndexOnNum'
+-- Algorithms.SortingTutorialSpec
+  quicksort'
   ---LockerSpec.lockerCrudOperationsSpec

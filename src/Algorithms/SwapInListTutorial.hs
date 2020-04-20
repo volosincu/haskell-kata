@@ -1,4 +1,4 @@
-module SwapInListTutorial
+module Algorithms.SwapInListTutorial
     ( swapByValue, swapByIndexOnChar, swapByIndexOnNum ) where
 
 import Data.List (map)
