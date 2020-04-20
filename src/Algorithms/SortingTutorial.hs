@@ -1,8 +1,8 @@
 module Algorithms.SortingTutorial ( quicksort ) where
 
 
-import Debug.Trace
-
-
-
-quicksort xs = xs
+quicksort (x:xs) =
+    let jumatateaMica = quicksort [i | i <- xs, i <= x]
+        jumatateaMare = quicksort [i | i <- xs, i > x]
+    in
+        jumatateaMica ++ [x] ++ jumatateaMare
